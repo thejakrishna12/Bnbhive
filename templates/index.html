@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -6,14 +7,14 @@
         <meta name="description" content="HOUSE RENTAL SYSTEM" />
         <meta name="keywords" content="Give Your Keywords for SEO" />
         
-        <title>HOUSE RENTAL SYSTEM</title>
+        <title>Bnbhive</title>
         <!--ADING CSS HERE-->
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" />
         
         <!--Resource Files for Slider-->
         <!-- Start WOWSlider.com HEAD section -->
-        <link rel="stylesheet" type="text/css" href="assets/slider/engine1/style.css" />
-        <script type="text/javascript" src="assets/slider/engine1/jquery.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/slider/engine1/style.css' %}" />
+        <script type="text/javascript" src="{% static 'assets/slider/engine1/jquery.js' %}"></script>
         <!-- End WOWSlider.com HEAD section -->
     </head>
     
@@ -21,7 +22,7 @@
         <!--Header Starts HERE-->
         <header class="header">
             <div class="wrapper">
-                <h1>HOUSE RENTAL SYSTEM</h1>
+                <h1>Bnbhive</h1>
             </div>
             
         </header>
@@ -58,8 +59,8 @@
                 	</div></div>
                 <div class="ws_shadow"></div>
                 </div>	
-                <script type="text/javascript" src="assets/slider/engine1/wowslider.js"></script>
-                <script type="text/javascript" src="assets/slider/engine1/script.js"></script>
+                <script type="text/javascript" src="{% static 'assets/slider/engine1/wowslider.js' %}"></script>
+                <script type="text/javascript" src="{% static 'assets/slider/engine1/script.js' %}"></script>
                 <!-- End WOWSlider.com BODY section -->
             </div>
         </div>
