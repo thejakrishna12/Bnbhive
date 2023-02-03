@@ -42,8 +42,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'home',
+    'registration',
+    'userprofile',
+    'allauth',
+    'social_django', 
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.facebook',
+
+    # 'allauth.acc',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'bnbhive.urls'
@@ -68,6 +83,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -81,11 +98,13 @@ WSGI_APPLICATION = 'bnbhive.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env("DEV_DATABASE_NAME"),
+        'USER': env("DEV_DATABASE_USER"),
+        'PASSWORD': env("DEV_DATABASE_PASSWORD"),
+        'HOST': env("DEV_DATABASE_HOST"),
+        'PORT': env("DEV_DATABASE_PORT"),
+    }}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -131,3 +150,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets/')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# LOGIN_REDIRECT_URL = 'dashboard'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'dasboard'
+LOGOUT_REDIRECT_URL = 'login'
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '749770639551363'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '4c6631f2dffc3fd88c855b35bb5cfb8d'  # App Secret
+
+SITE_ID = 1
