@@ -51,8 +51,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    # 'allauth.socialaccount.providers.github',
-    # 'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.facebook',
 
     # 'allauth.acc',
 ]
@@ -158,13 +159,13 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.github.GithubOAuth2',
-
+    'social_core.backends.linkedin.LinkedinOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'dasboard'
+LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
 
 
@@ -172,3 +173,39 @@ SOCIAL_AUTH_FACEBOOK_KEY = '749770639551363'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '4c6631f2dffc3fd88c855b35bb5cfb8d'  # App Secret
 
 SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        # 'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'first_name',
+            'last_name',
+            'middle_name',
+            'name',
+            'name_format',
+            'picture',
+            'short_name'
+        ],
+        'EXCHANGE_TOKEN': True,
+        # 'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v13.0',
+        'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
+    }
+}
+
+
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '86y6uqc4f6lmil'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'GNo0mtKzAmUwb38B'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True  
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_PORT = 587  
+EMAIL_HOST_USER = 'theja@techversantinfo.com'  
+EMAIL_HOST_PASSWORD = 'pupbgmxkoxzqpxta'  

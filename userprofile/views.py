@@ -8,5 +8,5 @@ from django.contrib.auth.models import User
 class ProfileView(UpdateView):
     model = User
     form_class = ProfileForm
-    # success_url = reverse_lazy('home')
+    success_url = reverse_lazy('home')
     template_name = 'userprofile/profile.html'

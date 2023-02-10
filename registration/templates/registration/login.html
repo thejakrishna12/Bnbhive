@@ -7,7 +7,8 @@
             <div class="row g-0">
               <div class="col-lg-6">
                 <div class="card-body p-md-5 mx-md-4">
-  
+                  <li class="nav-item">
+                   
                   <div class="text-center">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                       style="width: 185px;" alt="logo">
@@ -20,6 +21,7 @@
                     {% csrf_token %}
                     {{ form.as_p }}
                    <button type="submit">Login</button>
+                   <a href="{% url 'password_reset'  %}"><li>reset password</li></a>
                   </form>
                  {% endblock content %}
                 </div>
